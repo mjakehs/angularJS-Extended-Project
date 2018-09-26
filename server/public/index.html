@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./vendors/angular.min.js"></script>
+    <!-- Future Dependencies go here -->
+    <script src="scripts/client.js"></script>
     <title>Time Tracker</title>
 </head>
 <body ng-app="TrackerApp" ng-controller="TrackerController as vm">
     <h1>Time Tracker</h1>
+    {{vm.message}}
     <form ng-submit="vm.submitEntry()">
         <input type="text" ng-model="vm.newEntry.entry" placeholder="What did you do?"/>
         <input type="text" ng-model="vm.newEntry.project" placeholder="Project (future drop/select)"/>
