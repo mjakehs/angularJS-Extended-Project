@@ -9,15 +9,14 @@
     <script src="scripts/client.js"></script>
     <title>Time Tracker</title>
 </head>
-<body ng-app="TrackerApp" ng-controller="TrackerController as vm">
+<body ng-app="TrackerApp" ng-controller="EntryController as vm">
     <h1>Time Tracker</h1>
-    {{vm.message}}
-    <form ng-submit="vm.submitEntry()">
+        <form ng-submit="vm.submitEntry(vm.newEntry)">
         <input type="text" ng-model="vm.newEntry.entry" placeholder="What did you do?"/>
         <input type="text" ng-model="vm.newEntry.project" placeholder="Project (future drop/select)"/>
         <input type="date" ng-model="vm.newEntry.date"/>
-        <input type="text" ng-model="vm.newEntry.startTime" placeholder="Start Time"/>
-        <input type="text" ng-model="vm.newEntry.endTime" placeholder="End Time"/>
+        <input type="time" ng-model="vm.newEntry.startTime" placeholder="Start Time"/>
+        <input type="time" ng-model="vm.newEntry.endTime" placeholder="End Time"/>
         <input type="submit"/>
     </form>
 </html>
