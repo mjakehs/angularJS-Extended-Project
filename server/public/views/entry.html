@@ -46,7 +46,7 @@
                     <th md-column md-order-by="name">Project</th>
                     <th md-column md-order-by="entry_date" md-date>Date</th>
                     <th md-column>Hours</th>
-                    <th md-column>Actions</th>
+                    <th md-column colspan="2">Actions</th>
                 </tr>
             </thead>
             <tbody md-body>
@@ -55,6 +55,7 @@
                     <td md-cell>{{entry.name}}</td>
                     <td md-cell>{{entry.entry_date | date}}</td>
                     <td md-cell>{{entry.hours}}</td>
+                    <td md-cell><button ng-click="vm.editEntry(entry)">Edit</button></td>
                     <td md-cell><button ng-click="vm.deleteEntry(entry.id)">Delete</button></td>
                 </tr>
             </tbody>

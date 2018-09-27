@@ -15,9 +15,10 @@ router.post('/', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    pool.query(`SELECT * FROM "entry"
+    pool.query(`SELECT "entry".id, "project".name as "name", "entry".project_id, "entry".entry, "entry".entry_date, "entry".hours FROM "entry"
     JOIN "project" on "entry"."project_id"="project"."id";`)
     .then( (results) => {
+        console.log(results.rows);
         res.send(results.rows);
     })
     .catch( (error) => {
@@ -35,6 +36,19 @@ router.delete('/', (req, res) => {
     })
     .catch( (error) => {
         console.log('Error in entries delete: ', error);
+        res.sendStatus(500);
+    })
+})
+
+router.put('/', (req, res) => {
+    console.log(req.query.id);
+    pool.query('UPDATE "entry" SET "entry"=$1, "project_id"=$2, "entry_date"=$3, "hours"=$4 WHERE "id"=$5;',
+    [req.body.entry, req.body.project_id, req.body.date, req.body.hours, req.query.id])
+    .then( (results) => {
+        res.sendStatus(200);
+    })
+    .catch( (error) => {
+        console.log('Error in entries put: ', error);
         res.sendStatus(500);
     })
 })
