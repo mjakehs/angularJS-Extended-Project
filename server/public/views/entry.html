@@ -1,4 +1,4 @@
-<ng-include href="./views/navigation.html"></ng-include>
+<ng-include src="'./views/navigation.html'"></ng-include>
 <form ng-submit="vm.submitEntry(vm.newEntry)">
     <input type="text" ng-model="vm.newEntry.entry" placeholder="What did you do?" />
     <select ng-model="vm.newEntry.project_id">
