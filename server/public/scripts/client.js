@@ -43,7 +43,7 @@ app.controller('EntryController', ['$http', function ($http) {
             start.getMinutes()
         )
         //conditional allows users to rollover to next day if work extends overnight
-        if (end.getTime() < start.getTime()) {
+        if (end.getTime() > start.getTime()) {
             endDate = new Date(
                 (entryDate.getYear() + 1900),
                 entryDate.getMonth(),
@@ -51,8 +51,8 @@ app.controller('EntryController', ['$http', function ($http) {
                 end.getHours(),
                 end.getMinutes()
             )
-        }
-        else {
+        } 
+        if (end.getTime() < start.getTime()) {
             endDate = new Date(
                 (entryDate.getYear() + 1900),
                 entryDate.getMonth(),
