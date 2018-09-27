@@ -18,6 +18,21 @@ app.controller('EntryController', ['$http', function ($http) {
         })
     }//end entry post
 
+    vm.deleteEntry = function(entryId) {
+        $http({
+            method: 'DELETE',
+            url: '/entries',
+            params: {id: entryId}
+        })
+        .then( function(response){
+            vm.getEntries();
+        })
+        .catch(function(error){
+            alert('Error in entry delete!');
+        })
+    }
+
+
     vm.getEntries = function () {
         $http.get('/entries')
         .then( function(response){

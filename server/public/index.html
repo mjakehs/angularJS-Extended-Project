@@ -37,7 +37,7 @@
                 <td>{{entry.project_id}}</td>
                 <td>{{entry.entry_date | date}}</td>
                 <td>{{entry.hours}}</td>
-                <td><button>Delete</button></td>
+                <td><button ng-click="vm.deleteEntry(entry.id)">Delete</button></td>
             </tr>
         </tbody>
     </table>
