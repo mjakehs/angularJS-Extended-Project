@@ -38,17 +38,17 @@
 
 <md-table-container layout="column" flex="80" flex-offset="10">
     <table md-table>
-        <thead md-head>
+        <thead md-head md-order="myOrder">
             <tr md-row>
-                <th md-column ng-click="vm.myOrder = 'entry';">Entry</th>
-                <th md-column ng-click="vm.myOrder = 'name';">Project</th>
-                <th md-column ng-click="vm.myOrder = 'entry_date';" md-date>Date</th>
-                <th md-column ng-click="vm.myOrder = 'hours';" md-numeric>Hours</th>
+                <th md-column md-order-by="entry">Entry</th>
+                <th md-column md-order-by="name">Project</th>
+                <th md-column md-order-by="entry_date" md-date>Date</th>
+                <th md-column>Hours</th>
                 <th md-column>Actions</th>
             </tr>
         </thead>
         <tbody md-body>
-            <tr md-row ng-repeat="entry in vm.entries | orderBy: vm.myOrder">
+            <tr md-row ng-repeat="entry in vm.entries | orderBy: myOrder">
                 <td md-cell>{{entry.entry}}</td>
                 <td md-cell>{{entry.name}}</td>
                 <td md-cell>{{entry.entry_date | date}}</td>
