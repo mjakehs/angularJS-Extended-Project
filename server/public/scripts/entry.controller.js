@@ -4,16 +4,41 @@ app.controller('EntryController', ['$http', '$mdDialog', '$scope', function ($ht
     vm.projectsList = [];
     vm.submitEntry = function (entry) {
         vm.formatDateObject(entry);
-        $http({
-            method: 'POST',
-            url: '/entries',
-            data: entry
-        }).then(function (response) {
-            vm.newEntry = {};
-            vm.getEntries();
-        }).catch(function (error) {
-            alert('Error in entry post!');
-        })
+        vm.getDuplicateEntries();
+        if (vm.duplicates) {
+            let confirm = $mdDialog.confirm()
+                .title('Warning entry with that name for that project exists?')
+                .textContent('You may add this duplicate entry if you so choose.')
+                .targetEvent(event.currentTarget)
+                .ok('Add entry anyways')
+                .cancel('Cancel');
+            $mdDialog.show(confirm).then(function (value) {
+                $http({
+                    method: 'POST',
+                    url: '/entries',
+                    data: entry
+                }).then(function (response) {
+                    vm.newEntry = {};
+                    vm.getEntries();
+                }).catch(function (error) {
+                    alert('Error in entry post!');
+                })
+            }, function () {
+                console.log('Add alert here?')
+            });
+        }
+        else {
+            $http({
+                method: 'POST',
+                url: '/entries',
+                data: entry
+            }).then(function (response) {
+                vm.newEntry = {};
+                vm.getEntries();
+            }).catch(function (error) {
+                alert('Error in entry post!');
+            })
+        }
     }//end entry post
 
     vm.deleteEntry = function (entryId) {
@@ -79,7 +104,7 @@ app.controller('EntryController', ['$http', '$mdDialog', '$scope', function ($ht
                     </md-dialog-actions>
                 </md-dialog>
                 `,
-                controller: DialogController
+            controller: DialogController
         });
         function DialogController($mdDialog, $scope, $http) {
 
@@ -89,25 +114,25 @@ app.controller('EntryController', ['$http', '$mdDialog', '$scope', function ($ht
             $scope.entryEdit.date = entry.entry_date;
             $scope.entryEdit.hours = entry.hours;
             $scope.entryEdit.id = entry.id
-            $scope.closeDialog = function() {
-              $mdDialog.hide();
+            $scope.closeDialog = function () {
+                $mdDialog.hide();
             }
-            $scope.saveEdit = function(entryId) {
+            $scope.saveEdit = function (entryId) {
                 console.log($scope.entryEdit);
                 $http({
                     method: 'PUT',
                     url: '/entries',
                     data: $scope.entryEdit,
-                    params: {id: entryId}
+                    params: { id: entryId }
                 })
-                .then( function(response){
-                    console.log(response);
-                    vm.getEntries();
-                    $mdDialog.hide();
-                })
-                .catch(function(error){
-                    alert('Error in entry update!');
-                })
+                    .then(function (response) {
+                        console.log(response);
+                        vm.getEntries();
+                        $mdDialog.hide();
+                    })
+                    .catch(function (error) {
+                        alert('Error in entry update!');
+                    })
             }
         }
 
@@ -159,6 +184,25 @@ app.controller('EntryController', ['$http', '$mdDialog', '$scope', function ($ht
             alert('Error in project get!');
         })
     }
+
+    vm.getDuplicateEntries = function () {
+        $http({
+            method: 'GET',
+            url: '/entries/duplicate',
+            params: {
+                project_id: vm.newEntry.project_id,
+                entry: vm.newEntry.entry
+            }
+        })
+            .then(function (response) {
+                console.log(response.data);
+                vm.duplicates = response.data.bool;
+            }).catch(function (error) {
+                alert('Error in project get!');
+            })
+    }
+
+
     vm.getEntries();
     vm.getProjectsList();
 }])
