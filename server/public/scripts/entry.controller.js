@@ -2,7 +2,6 @@ app.controller('EntryController', ['$http', '$mdpTimePicker', function ($http) {
     let vm = this;
     vm.entries = [];
     vm.projectsList = [];
-
     vm.submitEntry = function (entry) {
         vm.formatDateObject(entry);
         $http({

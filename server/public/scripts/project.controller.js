@@ -50,7 +50,6 @@ app.controller('ProjectController', ['$http', '$mdDialog', function ($http, $mdD
         .ok('Edit')
         .cancel('Cancel');
         $mdDialog.show(confirm).then(function(value) {
-            console.log(value);
             name = value;
             $http({
                 method: 'PUT',
