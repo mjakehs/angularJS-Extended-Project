@@ -16,6 +16,10 @@ app.controller('ReportController', ['$http', function ($http) {
             alert('Error in project get!');
         })
     }
+
+    vm.filterChart = function(range) {
+        console.log(range, 'in filter');
+    }  
     
     vm.makeChart = function() {
         vm.names = [];

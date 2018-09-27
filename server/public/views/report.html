@@ -2,6 +2,18 @@
 <div layout="column" flex="60" flex-offset="20">
     <exception-chart class=""></exception-chart>
 </div>
-
+<form layout="row" layout-align="center" ng-submit="vm.filterChart(vm.newDateRange)">
+        <md-input-container flex="25">
+                <label>Start Date</label>
+                <md-datepicker ng-model="vm.newDateRange.startDate"></md-datepicker>
+        </md-input-container>
+        <md-input-container flex="25">
+                <label>End Date</label>
+                <md-datepicker ng-model="vm.newDateRange.endDate"></md-datepicker>
+        </md-input-container>
+        <md-input-container flex="10">
+                <md-button type="submit" class="md-raised md-primary form-submittal">Set Date Range</md-button>
+        </md-input-container>
+</form>
 <!-- Currently has a bug where switching to report view displays chart at wrong size
 problem resolved on refresh -->
