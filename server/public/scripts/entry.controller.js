@@ -1,6 +1,7 @@
 app.controller('EntryController', ['$http', function ($http) {
     let vm = this;
     vm.entries = [];
+    vm.projectsList = [];
 
     vm.submitEntry = function (entry) {
         vm.formatDateObject(entry);
@@ -29,7 +30,6 @@ app.controller('EntryController', ['$http', function ($http) {
             alert('Error in entry delete!');
         })
     }
-
 
     vm.getEntries = function () {
         $http.get('/entries')
@@ -72,8 +72,19 @@ app.controller('EntryController', ['$http', function ($http) {
                 end.getMinutes()
             )
         }
-        vm.newEntry.hours = ((endDate.getTime() - startDate.getTime())/3600000)
+        vm.newEntry.hours = ((endDate.getTime() - startDate.getTime())/3600000).toFixed(2);
     }//end formatDateObject
-
+    vm.getProjectsList = function() {
+        console.log('in get projects list');
+        $http({
+            method: 'GET',
+            url: '/projects'
+        }).then(function(response){
+           vm.projectsList = response.data;
+        }).catch(function(error){
+            alert('Error in project get!');
+        })
+    }
     vm.getEntries();
+    vm.getProjectsList();
 }])
