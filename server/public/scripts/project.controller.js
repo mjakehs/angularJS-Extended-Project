@@ -1,4 +1,4 @@
-app.controller('ProjectController', ['$http', function ($http) {
+app.controller('ProjectController', ['$http', '$mdDialog', function ($http, $mdDialog) {
     let vm = this;
     vm.projects = [];
 
@@ -38,6 +38,35 @@ app.controller('ProjectController', ['$http', function ($http) {
         .catch(function(error){
             alert('Error in project delete!');
         })
+    }
+    
+    vm.editProjectName = function(id, name) {
+        let confirm = $mdDialog.prompt()
+        .title('Edit Project Name')
+        .placeholder('Project Name')
+        .initialValue(name)
+        .targetEvent(event.currentTarget)
+        .required(true)
+        .ok('Edit')
+        .cancel('Cancel');
+        $mdDialog.show(confirm).then(function(value) {
+            console.log(value);
+            name = value;
+            $http({
+                method: 'PUT',
+                url: '/projects',
+                data: {name: name},
+                params: {id: id}
+            })
+            .then( function(response){
+                vm.getProjects();
+            })
+            .catch(function(error){
+                alert('Error in project update!');
+            })
+          }, function() {
+            console.log('Add alert here?')
+          });
     }
 
     vm.getProjects();
