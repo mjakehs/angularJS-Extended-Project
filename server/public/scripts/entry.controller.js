@@ -72,8 +72,7 @@ app.controller('EntryController', ['$http', function ($http) {
                 end.getMinutes()
             )
         }
-        vm.newEntry.startTime = startDate.getTime();
-        vm.newEntry.endTime = endDate.getTime();
+        vm.newEntry.hours = ((endDate.getTime() - startDate.getTime())/3600000)
     }//end formatDateObject
 
     vm.getEntries();

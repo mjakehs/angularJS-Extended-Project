@@ -5,8 +5,7 @@ CREATE TABLE "entry" (
     "entry" VARCHAR(255) NOT NULL,
     "project_id" INT REFERENCES "project", 
     "entry_date" DATE NOT NULL,
-    "start_time" BIGINT NOT NULL,
-    "end_time" BIGINT NOT NULL
+    "hours" INT NOT NULL
 );
 
 CREATE TABLE "project" (
