@@ -7,3 +7,14 @@
     margin-left: 15%;
     font-size: 3em;
 }
+
+.navLink {
+    background-color: lightgrey;
+    text-align: center;
+    border: solid black 1px;
+}
+
+.navContainer {
+    padding: 10px;
+    background-color: darkcyan;
+}
