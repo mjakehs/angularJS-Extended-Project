@@ -26,5 +26,19 @@ app.controller('ProjectController', ['$http', function ($http) {
         })
     }
 
+    vm.deleteProject = function(projectId) {
+        $http({
+            method: 'DELETE',
+            url: '/projects',
+            params: {id: projectId}
+        })
+        .then( function(response){
+            vm.getProjects();
+        })
+        .catch(function(error){
+            alert('Error in project delete!');
+        })
+    }
+
     vm.getProjects();
 }]);

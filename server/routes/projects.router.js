@@ -14,9 +14,9 @@ router.post('/', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    pool.query(`SELECT "project"."name", SUM("entry"."hours") AS "total_hours" FROM "project"
+    pool.query(`SELECT "project"."name", "project"."id", SUM("entry"."hours") AS "total_hours" FROM "project"
     LEFT OUTER JOIN "entry" ON "entry"."project_id"="project"."id"
-    GROUP BY "project"."name";`)
+    GROUP BY "project"."name", "project"."id";`)
     .then( (results) => {
         res.send(results.rows);
     })
@@ -26,18 +26,17 @@ router.get('/', (req, res) => {
     })
 })
 
-// router.delete('/', (req, res) => {
-//     console.log(req.query);
-//     pool.query(`DELETE FROM "entry"
-//     WHERE "id"=$1;`, [req.query.id])
-//     .then( (results) => {
-//         res.sendStatus(200);
-//     })
-//     .catch( (error) => {
-//         console.log('Error in entries delete: ', error);
-//         res.sendStatus(500);
-//     })
-// })
+router.delete('/', (req, res) => {
+    pool.query(`DELETE FROM "project"
+    WHERE "id"=$1;`, [req.query.id])
+    .then( (results) => {
+        res.sendStatus(200);
+    })
+    .catch( (error) => {
+        console.log('Error in projects delete: ', error);
+        res.sendStatus(500);
+    })
+})
 
 
 module.exports = router;
