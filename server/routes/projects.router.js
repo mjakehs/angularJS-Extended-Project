@@ -14,8 +14,8 @@ router.post('/', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    pool.query(`SELECT "project"."name", SUM("entry"."hours") FROM "project"
-    JOIN "entry" ON "entry"."project_id"="project"."id"
+    pool.query(`SELECT "project"."name", SUM("entry"."hours") AS "total_hours" FROM "project"
+    LEFT OUTER JOIN "entry" ON "entry"."project_id"="project"."id"
     GROUP BY "project"."name";`)
     .then( (results) => {
         res.send(results.rows);

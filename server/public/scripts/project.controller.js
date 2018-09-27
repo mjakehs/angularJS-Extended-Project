@@ -1,5 +1,7 @@
 app.controller('ProjectController', ['$http', function ($http) {
     let vm = this;
+    vm.projects = [];
+
     vm.addProject = function(project){
         $http({
             method: 'POST',
@@ -14,6 +16,15 @@ app.controller('ProjectController', ['$http', function ($http) {
     }
     
     vm.getProjects = function(){
-        console.log('Hi');
+        $http({
+            method: 'GET',
+            url: '/projects'
+        }).then(function(response){
+           vm.projects = response.data;
+        }).catch(function(error){
+            alert('Error in project get!');
+        })
     }
+
+    vm.getProjects();
 }]);
