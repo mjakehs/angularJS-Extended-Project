@@ -15,7 +15,8 @@ router.post('/', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    pool.query(`SELECT * FROM "entry";`)
+    pool.query(`SELECT * FROM "entry"
+    JOIN "project" on "entry"."project_id"="project"."id";`)
     .then( (results) => {
         let entry = results.rows;
         for (let i = 0; i < entry.length; i++){
