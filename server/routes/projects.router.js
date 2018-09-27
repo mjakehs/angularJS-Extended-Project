@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
         res.send(results.rows);
     })
     .catch( (error) => {
-        console.log('Error in entries get: ', error);
+        console.log('Error in projects get: ', error);
         res.sendStatus(500);
     })
 })
