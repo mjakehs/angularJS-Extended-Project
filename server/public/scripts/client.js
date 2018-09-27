@@ -1,4 +1,4 @@
-const app = angular.module('TrackerApp', ['ngRoute', 'md.data.table', 'ngMaterial']);
+const app = angular.module('TrackerApp', ['ngRoute', 'md.data.table', 'ngMaterial', 'md.time.picker']);
 
 app.config(['$routeProvider', function($routeProvider){
     $routeProvider.when('/', {
@@ -16,3 +16,5 @@ app.config(['$routeProvider', function($routeProvider){
         template: '<h1>404 Error</h1>'
     })
 }])
+
+

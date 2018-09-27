@@ -18,3 +18,16 @@
     padding: 10px;
     background-color: darkcyan;
 }
+
+.form-submittal {
+    height: 10%;
+}
+
+.entryForm {
+    border-radius: 5px;
+    border: solid black 1px;
+}
+
+.entryContent {
+    background-color: lightgrey;
+}

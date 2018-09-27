@@ -1,4 +1,4 @@
-app.controller('EntryController', ['$http', function ($http) {
+app.controller('EntryController', ['$http', '$mdpTimePicker', function ($http) {
     let vm = this;
     vm.entries = [];
     vm.projectsList = [];
