@@ -9,37 +9,19 @@
     <script src="./vendors/angular-route.min.js"></script>
     <!-- Future Dependencies go here -->
     <script src="scripts/client.js"></script>
+    <!-- future controllers go here -->
+    <script src="scripts/entry.controller.js"></script>
     <title>Time Tracker</title>
 </head>
 
 <body ng-app="TrackerApp" ng-controller="EntryController as vm">
     <h1>Time Tracker</h1>
-    <form ng-submit="vm.submitEntry(vm.newEntry)">
-        <input type="text" ng-model="vm.newEntry.entry" placeholder="What did you do?" />
-        <input type="text" ng-model="vm.newEntry.project" placeholder="Project (future drop/select)" />
-        <input type="date" ng-model="vm.newEntry.date" />
-        <input type="time" ng-model="vm.newEntry.startTime" placeholder="Start Time" />
-        <input type="time" ng-model="vm.newEntry.endTime" placeholder="End Time" />
-        <input type="submit" />
-    </form>
-    <table>
-        <thead>
-            <tr>
-                <th>Entry</th>
-                <th>Project</th>
-                <th>Date</th>
-                <th>Hours</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="entry in vm.entries">
-                <td>{{entry.entry}}</td>
-                <td>{{entry.project_id}}</td>
-                <td>{{entry.entry_date | date}}</td>
-                <td>{{entry.hours}}</td>
-                <td><button ng-click="vm.deleteEntry(entry.id)">Delete</button></td>
-            </tr>
-        </tbody>
-    </table>
+    <div>
+        <ul>
+            <li><a href="#!/entry">Entries</a></li>
+            <li><a href="#!/project">Projects</a></li>
+            <li><a href="#!/report">Report</a></li>
+        </ul>
+    </div>
+    <ng-view></ng-view>
 </html>
