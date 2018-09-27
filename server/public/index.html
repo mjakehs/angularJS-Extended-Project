@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +10,37 @@
     <script src="scripts/client.js"></script>
     <title>Time Tracker</title>
 </head>
+
 <body ng-app="TrackerApp" ng-controller="EntryController as vm">
     <h1>Time Tracker</h1>
-        <form ng-submit="vm.submitEntry(vm.newEntry)">
-        <input type="text" ng-model="vm.newEntry.entry" placeholder="What did you do?"/>
-        <input type="text" ng-model="vm.newEntry.project" placeholder="Project (future drop/select)"/>
-        <input type="date" ng-model="vm.newEntry.date"/>
-        <input type="time" ng-model="vm.newEntry.startTime" placeholder="Start Time"/>
-        <input type="time" ng-model="vm.newEntry.endTime" placeholder="End Time"/>
-        <input type="submit"/>
+    <form ng-submit="vm.submitEntry(vm.newEntry)">
+        <input type="text" ng-model="vm.newEntry.entry" placeholder="What did you do?" />
+        <input type="text" ng-model="vm.newEntry.project" placeholder="Project (future drop/select)" />
+        <input type="date" ng-model="vm.newEntry.date" />
+        <input type="time" ng-model="vm.newEntry.startTime" placeholder="Start Time" />
+        <input type="time" ng-model="vm.newEntry.endTime" placeholder="End Time" />
+        <input type="submit" />
     </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Entry</th>
+                <th>Project</th>
+                <th>Date</th>
+                <th>Hours</th>
+                <th>Hours</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="entry in vm.entries">
+                <td>{{entry.entry}}</td>
+                <td>{{entry.project_id}}</td>
+                <td>{{entry.entry_date | date}}</td>
+                <td>{{entry.start_time}}</td>
+                <td>{{entry.end_time}}</td>
+                <td><button>Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
 </html>
