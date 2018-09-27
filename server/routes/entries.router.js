@@ -14,5 +14,16 @@ router.post('/', (req, res) => {
     })
 })
 
+router.get('/', (req, res) => {
+    pool.query(`SELECT * FROM "entry";`)
+    .then( (results) => {
+        res.send(results.rows);
+    })
+    .catch( (error) => {
+        console.log('Error in entries get: ', error);
+        res.sendStatus(500);
+    })
+})
+
 
 module.exports = router;
