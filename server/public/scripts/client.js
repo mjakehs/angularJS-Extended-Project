@@ -11,18 +11,16 @@ app.controller('EntryController', ['$http', function ($http) {
             url: '/entries',
             data: entry
         }).then(function(response){
-            console.log(response);
             vm.newEntry = {};
+            vm.getEntries();
         }).catch(function(error){
             alert('Error in entry post!');
         })
     }//end entry post
 
     vm.getEntries = function () {
-        console.log('Placeholder for get entries');
         $http.get('/entries')
         .then( function(response){
-            console.log(response.data);
             vm.entries = response.data;
         }).catch(function(error){
             alert('Error in entry post!');
