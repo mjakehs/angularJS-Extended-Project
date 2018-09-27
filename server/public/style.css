@@ -1,0 +1,9 @@
+#pageHeader {
+    background-color: slategrey;
+    color: white;
+}
+
+#pageHeader h1 {
+    margin-left: 15%;
+    font-size: 3em;
+}

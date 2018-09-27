@@ -20,11 +20,16 @@
     <!-- CSS FILES HERE -->
     <link rel="stylesheet" href="vendors/angular-material.min.css"/>
     <link rel="stylesheet" href="vendors/md-data-table.min.css"/>
+    <link rel="stylesheet" href="style.css"/>
     <title>Time Tracker</title>
 </head>
 
 <body ng-app="TrackerApp" ng-controller="EntryController as vm">
-    <h1>Time Tracker</h1>
+    <div layout="column" id="pageHeader">
+        <header>
+            <h1>Time Tracker</h1>
+        </header>
+    </div>
     <div>
         <ul>
             <li><a href="#!/entry">Entries</a></li>

@@ -1,6 +1,6 @@
-<form ng-submit="vm.addProject(vm.newProject)">
-    <input type="text" ng-model="vm.newProject.project_name" placeholder="Project Name"/>
-    <input type="submit"/>
+<form layout="row" ng-submit="vm.addProject(vm.newProject)">
+    <input flex="40" type="text" ng-model="vm.newProject.project_name" placeholder="Project Name"/>
+    <input flex="10" type="submit"/>
 </form>
 <md-table-container>
     <table md-table>
