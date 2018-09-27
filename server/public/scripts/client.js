@@ -1,4 +1,4 @@
-const app = angular.module('TrackerApp', ['ngRoute']);
+const app = angular.module('TrackerApp', ['ngRoute', 'md.data.table', 'ngMaterial']);
 
 app.config(['$routeProvider', function($routeProvider){
     $routeProvider.when('/', {

@@ -2,19 +2,21 @@
     <input type="text" ng-model="vm.newProject.project_name" placeholder="Project Name"/>
     <input type="submit"/>
 </form>
-<table>
-    <thead>
-        <tr>
-            <th>Project</th>
-            <th>Total Hours</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="project in vm.projects">
-            <td>{{project.name}}</td>
-            <td>{{project.total_hours}}</td>
-            <td><button ng-click="vm.deleteProject(project.id)">Delete</button></td>
-        </tr>
-    </tbody>
-</table>
+<md-table-container>
+    <table md-table>
+        <thead md-head>
+            <tr md-row>
+                <th md-column>Project</th>
+                <th md-column md-numeric>Total Hours</th>
+                <th md-column>Acrtions</th>
+            </tr>
+        </thead>
+        <tbody md-body>
+            <tr md-row ng-repeat="project in vm.projects">
+                <td md-cell>{{project.name}}</td>
+                <td md-cell>{{project.total_hours}}</td>
+                <td md-cell><button ng-click="vm.deleteProject(project.id)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</md-table-container>

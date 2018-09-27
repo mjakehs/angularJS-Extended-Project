@@ -9,24 +9,26 @@
     <input type="time" ng-model="vm.newEntry.endTime" placeholder="End Time" />
     <input type="submit" />
 </form>
-{{vm.newEntry.project_id}}
-<table>
-    <thead>
-        <tr>
-            <th>Entry</th>
-            <th>Project</th>
-            <th>Date</th>
-            <th>Hours</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="entry in vm.entries">
-            <td>{{entry.entry}}</td>
-            <td>{{entry.name}}</td>
-            <td>{{entry.entry_date | date}}</td>
-            <td>{{entry.hours}}</td>
-            <td><button ng-click="vm.deleteEntry(entry.id)">Delete</button></td>
-        </tr>
-    </tbody>
-</table>
+
+<md-table-container>
+    <table md-table>
+        <thead md-head>
+            <tr md-row>
+                <th md-column>Entry</th>
+                <th md-column>Project</th>
+                <th md-column md-date>Date</th>
+                <th md-column md-numeric>Hours</th>
+                <th md-column>Actions</th>
+            </tr>
+        </thead>
+        <tbody md-body>
+            <tr md-row ng-repeat="entry in vm.entries">
+                <td md-cell>{{entry.entry}}</td>
+                <td md-cell>{{entry.name}}</td>
+                <td md-cell>{{entry.entry_date | date}}</td>
+                <td md-cell>{{entry.hours}}</td>
+                <td md-cell><button ng-click="vm.deleteEntry(entry.id)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</md-table-container>
