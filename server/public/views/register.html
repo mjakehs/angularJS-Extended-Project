@@ -1,0 +1,25 @@
+<form layout="column" ng-cloak class="md-inline-form" ng-submit="vm.registerUser(vm.newUser)" flex="60" flex-offset="20">
+    <header>
+        <h1>
+            Register
+        </h1>
+    </header>
+    <md-input-container class="entryInput" flex="100">
+        <label>Username</label>
+        <input type="text" ng-model="vm.newUser.username" />
+    </md-input-container>
+    <md-input-container class="entryInput" flex="100">
+        <label>Password</label>
+        <input type="password" ng-model="vm.newUser.password" />
+    </md-input-container>
+    <md-input-container class="entryInput" flex="100">
+        <label>Confirm Password</label>
+        <input type="password" ng-model="vm.newUser.confirmPassword" />
+    </md-input-container>
+    <div>
+        <md-button type="submit" class="md-raised md-warn">Submit</md-button>
+    </div>
+</form>
+<div class="navContainer" layout="row" layout-align="center">
+    <a class="navLink md-button md-raised md-primary" flex="20" href="#!/">Back to Log In</a>
+</div>
