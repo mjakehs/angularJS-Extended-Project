@@ -22,6 +22,7 @@ app.use('/api/user', require('./routes/user.router'));
 app.use('/entries', require('./routes/entries.router'));
 app.use('/projects', require('./routes/projects.router'));
 app.use('/connections', require('./routes/connections.router'));
+app.use('/messages', require('./routes/messages.router'));
 
 
 app.listen(PORT, () => {
