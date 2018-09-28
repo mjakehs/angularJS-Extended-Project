@@ -58,6 +58,7 @@ app.controller('EntryController', ['$http', '$mdDialog', '$scope', function ($ht
     vm.getEntries = function () {
         $http.get('/entries')
             .then(function (response) {
+                console.log(response.data);
                 vm.entries = response.data;
             }).catch(function (error) {
                 alert('Error in entry get!');
@@ -173,6 +174,7 @@ app.controller('EntryController', ['$http', '$mdDialog', '$scope', function ($ht
         }
         vm.newEntry.hours = ((endDate.getTime() - startDate.getTime()) / 3600000).toFixed(2);
     }//end formatDateObject
+    
     vm.getProjectsList = function () {
         console.log('in get projects list');
         $http({
