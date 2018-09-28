@@ -23,23 +23,23 @@ CREATE TABLE "person" (
 
 CREATE TABLE "connections" (
 	"id" SERIAL PRIMARY KEY,
-	"person_one_id" INT,
-	"person_two_id" INT,
+	"person_one_id" INT REFERENCES "person",
+	"person_two_id" INT REFERENCES "person",
 	"connection_date" DATE DEFAULT CURRENT_DATE
 );
 
 CREATE TABLE "messages" (
 	"id" SERIAL PRIMARY KEY,
 	"message_body" VARCHAR(300) NOT NULL,
-	"from_person_id" INT NOT NULL,
-	"to_person_id" INT NOT NULL,
+	"from_person_id" INT REFERENCES "person" NOT NULL,
+	"to_person_id" INT REFERENCES "person" NOT NULL,
 	"message_date" DATE NOT NULL
 );
 
 CREATE TABLE "person_project" (
 	"id" SERIAL PRIMARY KEY,
 	"project_id" INT REFERENCES "project",
-	"owner_id" INT,
-	"member_id" INT,
+	"owner_id" INT REFERENCES "person",
+	"member_id" INT REFERENCES "person",
 	"addition_date" DATE DEFAULT CURRENT_DATE
 );
