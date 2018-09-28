@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const pool = require('../pool');
+const pool = require('../modules/pool');
 
 router.post('/', (req, res) => {
     pool.query(`INSERT INTO "entry" ("entry", "project_id", "entry_date","hours")

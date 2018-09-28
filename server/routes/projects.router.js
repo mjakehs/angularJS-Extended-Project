@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const pool = require('../pool');
+const pool = require('../modules/pool');
 
 router.post('/', (req, res) => {
     console.log(req.body);
