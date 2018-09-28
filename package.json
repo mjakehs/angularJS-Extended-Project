@@ -19,9 +19,14 @@
     "angular-material-time-picker": "^1.0.8",
     "angular-messages": "^1.7.4",
     "angular-route": "^1.7.4",
+    "bcrypt": "^3.0.1",
     "body-parser": "^1.18.3",
     "chart.js": "^2.7.2",
+    "cookie-session": "^2.0.0-beta.3",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "pg": "^7.4.3"
   }
 }
