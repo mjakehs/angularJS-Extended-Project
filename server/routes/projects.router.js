@@ -5,7 +5,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(req.body);
     pool.query(`INSERT INTO "project" ("name")
-    VALUES ($1);`, [req.body.project_name]
+    VALUES ($1);`, [req.body.projectName]
     ).then((results) => {
         res.sendStatus(201);
     }).catch((error) => {
