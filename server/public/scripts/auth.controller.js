@@ -6,8 +6,7 @@ app.controller('AuthController', ['$http', '$location', '$scope', function ($htt
             method: 'GET',
             url: '/api/user/logout'
         }).then(function (response) {
-            console.log(response);
-            $location.path('/#!/');
+            $location.path('/');
         }).catch(function (error) {
             alert('Error in Log Out!');
         })
@@ -20,7 +19,7 @@ app.controller('AuthController', ['$http', '$location', '$scope', function ($htt
             data: userInfo
         })
         .then(function(){
-            $location.path('/#!/entry');
+            $location.path('/entry');
         })
         .catch( function(error) {
             alert('Error logging in user.')
@@ -29,7 +28,7 @@ app.controller('AuthController', ['$http', '$location', '$scope', function ($htt
 
     vm.registerUser = function (userInfo) {
         console.log('in register');
-        if (userInfo.password === user.info.confirmPassword){
+        if (userInfo.password === userInfo.confirmPassword){
             $http({
                 method: 'POST',
                 url: '/api/user/register',
