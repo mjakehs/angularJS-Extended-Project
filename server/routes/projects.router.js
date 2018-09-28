@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const pool = require('../modules/pool');
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(req.body);
     pool.query(`INSERT INTO "project" ("name")
     VALUES ($1);`, [req.body.project_name]
@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
     })
 })
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     pool.query(`SELECT "project"."name", "project"."id", SUM("entry"."hours") AS "total_hours" FROM "project"
     LEFT OUTER JOIN "entry" ON "entry"."project_id"="project"."id"
     GROUP BY "project"."name", "project"."id";`)
@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.delete('/', (req, res) => {
+router.delete('/', rejectUnauthenticated, (req, res) => {
     pool.query(`DELETE FROM "project"
     WHERE "id"=$1;`, [req.query.id])
     .then( (results) => {
@@ -38,7 +38,7 @@ router.delete('/', (req, res) => {
     })
 })
 
-router.put('/', (req, res) => {
+router.put('/', rejectUnauthenticated, (req, res) => {
     pool.query('UPDATE"project" SET "name"=$1 WHERE "id"=$2;',
     [req.body.name, req.query.id])
     .then( (results) => {
@@ -50,7 +50,7 @@ router.put('/', (req, res) => {
     })
 })
 
-router.get('/filter', (req, res) => {
+router.get('/filter', rejectUnauthenticated, (req, res) => {
     pool.query(`SELECT "project"."name", "project"."id", SUM("entry"."hours") AS "total_hours" FROM "project"
     LEFT OUTER JOIN "entry" ON "entry"."project_id"="project"."id"
     WHERE $1 <= "entry"."entry_date" AND "entry"."entry_date" <= $2

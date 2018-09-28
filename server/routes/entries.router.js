@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const pool = require('../modules/pool');
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     pool.query(`INSERT INTO "entry" ("entry", "project_id", "entry_date","hours")
     VALUES ($1,$2,$3,$4);`,
     [req.body.entry, req.body.project_id, req.body.date, req.body.hours])
@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
     })
 })
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     pool.query(`SELECT "entry".id, "project".name as "name", "entry".project_id, "entry".entry, "entry".entry_date, "entry".hours FROM "entry"
     JOIN "project" on "entry"."project_id"="project"."id";`)
     .then( (results) => {
@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.delete('/', (req, res) => {
+router.delete('/', rejectUnauthenticated, (req, res) => {
     pool.query(`DELETE FROM "entry"
     WHERE "id"=$1;`, [req.query.id])
     .then( (results) => {
@@ -38,7 +38,7 @@ router.delete('/', (req, res) => {
     })
 })
 
-router.put('/', (req, res) => {
+router.put('/', rejectUnauthenticated, (req, res) => {
     pool.query('UPDATE "entry" SET "entry"=$1, "project_id"=$2, "entry_date"=$3, "hours"=$4 WHERE "id"=$5;',
     [req.body.entry, req.body.project_id, req.body.date, req.body.hours, req.query.id])
     .then( (results) => {
@@ -50,7 +50,7 @@ router.put('/', (req, res) => {
     })
 })
 
-router.get('/duplicate', (req, res) => {
+router.get('/duplicate', rejectUnauthenticated, (req, res) => {
     pool.query(`SELECT * FROM "entry" WHERE "project_id"=$1 AND "entry"=$2;`,
     [req.query.project_id, req.query.entry])
     .then( (results) => {
