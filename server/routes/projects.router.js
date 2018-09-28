@@ -60,7 +60,7 @@ router.get('/filter', (req, res) => {
         res.send(results.rows);
     })
     .catch( (error) => {
-        console.log('Error in projects get: ', error);
+        console.log('Error in projects/filter get: ', error);
         res.sendStatus(500);
     })
 })
