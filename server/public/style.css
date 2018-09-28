@@ -30,3 +30,10 @@
 .entryContent {
     background-color: lightgrey;
 }
+
+.customTable {
+    background-color: lightskyblue;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: solid black 1px;
+}

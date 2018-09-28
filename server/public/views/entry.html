@@ -39,7 +39,7 @@
     </form>
 
     <md-table-container layout="column" flex="80" flex-offset="10">
-        <table md-table>
+        <table md-table class="customTable">
             <thead md-head md-order="myOrder">
                 <tr md-row>
                     <th md-column md-order-by="entry">Entry</th>
@@ -55,8 +55,10 @@
                     <td md-cell>{{entry.name}}</td>
                     <td md-cell>{{entry.entry_date | date}}</td>
                     <td md-cell>{{entry.hours}}</td>
-                    <td md-cell><button ng-click="vm.editEntry(entry)">Edit</button></td>
-                    <td md-cell><button ng-click="vm.deleteEntry(entry.id)">Delete</button></td>
+                    <td md-cell>
+                        <md-button class="md-warn" ng-click="vm.editEntry(entry)">Edit</md-button>
+                        <md-button class="md-warn" ng-click="vm.deleteEntry(entry.id)">Delete</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
