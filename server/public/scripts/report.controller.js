@@ -19,6 +19,21 @@ app.controller('ReportController', ['$http', function ($http) {
 
     vm.filterChart = function(range) {
         console.log(range, 'in filter');
+        $http({
+            method: 'GET',
+            url: '/projects/filter',
+            params: {startDate: range.startDate,
+            endDate: range.endDate}
+        })
+        .then( function(response){
+            console.log(response);
+            vm.projects = response.data;
+            vm.makeChart();
+        })
+        .catch(function(error){
+            console.log(error);
+            alert('Error in filterChart');
+        })
     }  
     
     vm.makeChart = function() {

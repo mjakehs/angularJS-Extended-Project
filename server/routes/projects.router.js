@@ -50,5 +50,18 @@ router.put('/', (req, res) => {
     })
 })
 
-
+router.get('/filter', (req, res) => {
+    pool.query(`SELECT "project"."name", "project"."id", SUM("entry"."hours") AS "total_hours" FROM "project"
+    LEFT OUTER JOIN "entry" ON "entry"."project_id"="project"."id"
+    WHERE $1 <= "entry"."entry_date" AND "entry"."entry_date" <= $2
+    GROUP BY "project"."name", "project"."id";`,
+    [req.query.startDate, req.query.endDate])
+    .then( (results) => {
+        res.send(results.rows);
+    })
+    .catch( (error) => {
+        console.log('Error in projects get: ', error);
+        res.sendStatus(500);
+    })
+})
 module.exports = router;
