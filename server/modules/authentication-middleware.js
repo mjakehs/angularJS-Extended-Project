@@ -8,4 +8,4 @@ const rejectUnauthenticated = (req, res, next) => {
     }
 }
 
-module.exports = rejectUnauthenticated;
+module.exports = { rejectUnauthenticated };

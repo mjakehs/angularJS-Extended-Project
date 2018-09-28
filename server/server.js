@@ -9,14 +9,16 @@ const passport = require('./strategies/user.strategy');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+
 // Passport Session Configuration //
 app.use(sessionMiddleware);
 // start up passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 app.use(express.static('server/public'));
-app.use('/api/user', userRouter);
+app.use('/api/user', require('./routes/user.router'));
 app.use('/entries', require('./routes/entries.router'));
 app.use('/projects', require('./routes/projects.router'));
 
