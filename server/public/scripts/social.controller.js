@@ -92,6 +92,20 @@ app.controller('SocialController', ['$http', function ($http) {
         })
     }
 
+    vm.getSentRequests = function() {
+        $http({
+            method: 'GET',
+            url: 'connections/request/sent'
+        })
+        .then( function(response) {
+            vm.sentRequests = response.data;
+        })
+        .catch( function(error) {
+            alert('Error in connection_request_sent GET.');
+        })
+    }
+
+    vm.getSentRequests();
     vm.getReceivedRequests();
     vm.getReceivedMessages();
     vm.getSentMessages();

@@ -44,8 +44,13 @@
             <md-option value="{{user.id}}" ng-repeat="user in vm.users | filter : vm.searchText">{{user.username}}</md-option>
         </md-select>
         <p>Requests:</p>
+        <p>Received:</p>
         <ul>
             <li ng-repeat="request in vm.receivedRequests">{{request.username}}</li>
+        </ul>
+        <p>Sent:</p>
+        <ul>
+            <li ng-repeat="request in vm.sentRequests">{{request.username}}</li>
         </ul>
         <p>Friends:</p>
         <ul>
