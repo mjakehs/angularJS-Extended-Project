@@ -81,7 +81,8 @@ router.get('/request/sent', rejectUnauthenticated, (req, res) => {
 })
 
 router.delete('/request/sent', rejectUnauthenticated, (req, res) => {
-    pool.query()
+    pool.query(`DELETE FROM "connection_request" 
+    WHERE "from_person_id"=$2 AND "to_person_id"=$1;`, [req.query.id, req.user.id])
     .then( (results) => {
         res.sendStatus(200);
     })
@@ -92,7 +93,8 @@ router.delete('/request/sent', rejectUnauthenticated, (req, res) => {
 })
 
 router.delete('/request/received', rejectUnauthenticated, (req, res) => {
-    pool.query()
+    pool.query(`DELETE FROM "connection_request"
+    WHERE "from_person_id"=$1 AND "to_person_id"=$2;`, [req.query.id, req.user.id])
     .then( (results) => {
         res.sendStatus(200);
     })

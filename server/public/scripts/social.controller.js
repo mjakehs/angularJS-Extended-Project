@@ -107,10 +107,44 @@ app.controller('SocialController', ['$http', function ($http) {
 
     vm.acceptRequest = function(_id) {
         console.log(_id);
+        $http({
+            method: 'POST',
+            url: '/connections',
+            data: {id: _id}
+        })
+        .then( function(response){
+            alert('Request Accepted');
+            console.log(_id);
+            $http({
+                method: 'DELETE',
+                url: '/connections/request/received',
+                params: {id: _id}
+            })
+            .then( function() {
+                vm.getReceivedRequests();
+                vm.getFriends();
+            })
+            .catch( function(error) {
+                alert('Error in connection_request DELETE.');
+            })
+        })
+        .catch( function(error) {
+            alert('Error in connection POST.');
+        })
     }
 
     vm.cancelRequest = function(_id) {
         console.log(_id);
+        $http({
+            method: 'DELETE',
+            url: '/connections/request/sent',
+            params: {id: _id}
+        })
+        .then( function() {
+            vm.getSentRequests();
+        }).catch( function(error) {
+            alert('Error in connection_request DELETE.');
+        })
     }
 
     vm.getSentRequests();
