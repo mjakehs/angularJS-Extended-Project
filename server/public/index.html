@@ -46,11 +46,11 @@
         <p>Requests:</p>
         <p>Received:</p>
         <ul>
-            <li ng-repeat="request in vm.receivedRequests">{{request.username}}</li>
+            <li ng-repeat="request in vm.receivedRequests">{{request.username}} <md-button ng-click="vm.acceptRequest(request.from_person_id)">Accept</md-button></li>
         </ul>
         <p>Sent:</p>
         <ul>
-            <li ng-repeat="request in vm.sentRequests">{{request.username}}</li>
+            <li ng-repeat="request in vm.sentRequests">{{request.username}}<md-button ng-click="vm.cancelRequest(request.to_person_id)">Cancel</md-button></li>
         </ul>
         <p>Friends:</p>
         <ul>

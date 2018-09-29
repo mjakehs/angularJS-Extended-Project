@@ -105,6 +105,14 @@ app.controller('SocialController', ['$http', function ($http) {
         })
     }
 
+    vm.acceptRequest = function(_id) {
+        console.log(_id);
+    }
+
+    vm.cancelRequest = function(_id) {
+        console.log(_id);
+    }
+
     vm.getSentRequests();
     vm.getReceivedRequests();
     vm.getReceivedMessages();
