@@ -41,6 +41,14 @@
         <ul>
             <li ng-repeat="friend in vm.friends">{{friend.username}}</li>
         </ul>
+        <p>Received Messages</p>
+        <ul>
+            <li ng-repeat="message in vm.receivedMessages">{{message.from}} : {{message.message}}</li>
+        </ul>
+        <p>Sent Messages</p>
+        <ul>
+            <li ng-repeat="message in vm.sentMessages">{{message.to}} : {{message.message}}</li>
+        </ul>
     </div>
     <ng-view></ng-view>
 

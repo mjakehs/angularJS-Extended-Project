@@ -13,13 +13,28 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
 })
 
-router.get('/', rejectUnauthenticated, (req, res) => {
-    pool.query()
+router.get('/sent', rejectUnauthenticated, (req, res) => {
+    pool.query(`SELECT "messages".message_body AS "message", "person".username AS "to" FROM "messages"
+    JOIN "person" ON "messages"."to_person_id"="person".id
+    WHERE "from_person_id"=$1;`, [req.user.id])
     .then( (results) => {
         res.send(results.rows);
     })
     .catch( (error) => {
-        console.log('Error in messages get: ', error);
+        console.log('Error in messages/sent get: ', error);
+        res.sendStatus(500);
+    })
+})
+
+router.get('/received', rejectUnauthenticated, (req, res) => {
+    pool.query(`SELECT "messages".message_body AS "message", "person".username AS "from" FROM "messages"
+    JOIN "person" ON "messages"."from_person_id"="person".id
+    WHERE "to_person_id"=$1;`, [req.user.id])
+    .then( (results) => {
+        res.send(results.rows);
+    })
+    .catch( (error) => {
+        console.log('Error in messages/received get: ', error);
         res.sendStatus(500);
     })
 })

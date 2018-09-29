@@ -25,7 +25,34 @@ app.controller('SocialController', ['$http', function ($http) {
             alert('Error in current user GET.');
         })
     }
+    vm.getSentMessages = function(){
+        $http({
+            method: 'GET',
+            url: '/messages/sent'
+        })
+        .then( function(response){
+            vm.sentMessages = response.data;
+        })
+        .catch( function(error) {
+            alert('Error in messages/sent GET.');
+        })
+    }
 
+    vm.getReceivedMessages = function(){
+        $http({
+            method: 'GET',
+            url: '/messages/received'
+        })
+        .then( function(response){
+            vm.receivedMessages = response.data;
+        })
+        .catch( function(error) {
+            alert('Error in messages/received GET.');
+        })
+    }
+
+    vm.getReceivedMessages();
+    vm.getSentMessages();
     vm.getCurrentUser();
     vm.getFriends();
 }]);
