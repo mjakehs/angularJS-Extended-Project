@@ -38,6 +38,11 @@
     <div ng-controller="SocialController as vm">
         <p>Current User: {{vm.currentUser}}</p>
         <p>Connections:</p>
+        <p>Add new connection</p>
+        <input type="text" placeholder="search" ng-model="vm.searchText">
+        <md-select flex="20" ng-model="vm.newConnection.user">
+            <md-option value="{{user.id}}" ng-repeat="user in vm.users | filter : vm.searchText">{{user.username}}</option>
+        </md-select>
         <ul>
             <li ng-repeat="friend in vm.friends">{{friend.username}}</li>
         </ul>

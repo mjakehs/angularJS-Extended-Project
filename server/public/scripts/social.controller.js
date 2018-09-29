@@ -1,6 +1,21 @@
 app.controller('SocialController', ['$http', function ($http) {
     let vm = this;
     vm.friends = [];
+    vm.users = [];
+
+    vm.getUsers = function () {
+        $http({
+            method: 'GET',
+            url: '/api/user/all'
+        })
+        .then( function(response){
+            vm.users = response.data;
+        })
+        .catch( function(error) {
+            alert('Error in users GET.');
+        })
+    }
+
     vm.getFriends = function() {
         $http({
             method: 'GET',
@@ -55,4 +70,5 @@ app.controller('SocialController', ['$http', function ($http) {
     vm.getSentMessages();
     vm.getCurrentUser();
     vm.getFriends();
+    vm.getUsers();
 }]);

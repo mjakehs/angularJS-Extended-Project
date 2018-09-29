@@ -11,6 +11,17 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
+router.get('/all', rejectUnauthenticated, (req, res) => {
+  pool.query(`SELECT "username" FROM "person";`)
+  .then( (results) =>{
+    res.send(results.rows);
+  })
+  .catch((err) => { 
+    console.log('Error in get all users: ', err) 
+    res.sendStatus(500) 
+  })
+})
+
 router.post('/register', (req, res, next) => {
   console.log('req: ', req.body);
   const username = req.body.username;
