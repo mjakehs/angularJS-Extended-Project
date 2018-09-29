@@ -41,8 +41,13 @@
         <p>Add new connection</p>
         <input type="text" placeholder="search" ng-model="vm.searchText"> <md-button ng-click="vm.addConnectionRequest(vm.newConnection)">Add Comrade</md-button>
         <md-select flex="20" ng-model="vm.newConnection.user">
-            <md-option value="{{user.id}}" ng-repeat="user in vm.users | filter : vm.searchText">{{user.username}}</option>
+            <md-option value="{{user.id}}" ng-repeat="user in vm.users | filter : vm.searchText">{{user.username}}</md-option>
         </md-select>
+        <p>Requests:</p>
+        <ul>
+            <li ng-repeat="request in vm.receivedRequests">{{request.username}}</li>
+        </ul>
+        <p>Friends:</p>
         <ul>
             <li ng-repeat="friend in vm.friends">{{friend.username}}</li>
         </ul>

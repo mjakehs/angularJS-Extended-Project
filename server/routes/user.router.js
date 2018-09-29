@@ -12,7 +12,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.get('/all', rejectUnauthenticated, (req, res) => {
-  pool.query(`SELECT "username" FROM "person";`)
+  pool.query(`SELECT "username", "id" FROM "person";`)
   .then( (results) =>{
     res.send(results.rows);
   })

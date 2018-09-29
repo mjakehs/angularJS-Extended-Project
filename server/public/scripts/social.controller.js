@@ -65,7 +65,34 @@ app.controller('SocialController', ['$http', function ($http) {
             alert('Error in messages/received GET.');
         })
     }
+    vm.addConnectionRequest = function(_id) {
+        $http({
+            method: 'POST',
+            url: '/connections/request',
+            data: {id: _id.user}
+        })
+        .then( function(response){
+            alert('Connection Request Sent');
+        })
+        .catch( function(error) {
+            alert('Error in connection_request POST.');
+        })
+    }
 
+    vm.getReceivedRequests = function() {
+        $http({
+            method: 'GET',
+            url: 'connections/request/received'
+        })
+        .then( function(response) {
+            vm.receivedRequests = response.data;
+        })
+        .catch( function(error) {
+            alert('Error in connection_request_received GET.');
+        })
+    }
+
+    vm.getReceivedRequests();
     vm.getReceivedMessages();
     vm.getSentMessages();
     vm.getCurrentUser();

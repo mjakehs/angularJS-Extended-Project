@@ -3,6 +3,7 @@ const pool = require('../modules/pool');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 //add new connection, delete a connection, get all connections
+//make a request acceptance trigger connection post
 
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(req.body);
