@@ -172,7 +172,19 @@ app.controller('SocialController', ['$http', '$mdDialog', function ($http, $mdDi
             })
         })
     }
-
+    vm.deleteConnection = function(_id) {
+        $http({
+            method: 'DELETE',
+            url: '/connections',
+            params: {id: _id}
+        })
+        .then(function () {
+            vm.getFriends();
+        })
+        .catch(function (error) {
+            alert('Error in connections DELETE.');
+        })
+    }
 
     vm.getSentRequests();
     vm.getReceivedRequests();
