@@ -1,38 +1,37 @@
 <ng-include src="'./views/navigation.html'"></ng-include>
-<div class="md-padding" id="popupContainer" ng-cloak>
-    <form layout="column" ng-cloak class="md-inline-form entryForm" ng-submit="vm.addProject(vm.newProject)" flex="60"
-        flex-offset="20">
-        <md-content class="entryContent">
-            <div layout-gt-xs="row" layout-align="center" layout-padding>
-                <md-input-container class="entryInput" flex="60">
-                    <label>Project Name</label>
-                    <input type="text" ng-model="vm.newProject.projectName"/>
-                </md-input-container>
-                <div flex="20" flex-offset="20">
-                    <md-button type="submit" class="md-raised md-warn">Submit</md-button>
-                </div>
+<form layout="column" ng-cloak class="md-inline-form entryForm" ng-submit="vm.addProject(vm.newProject)" flex="60"
+    flex-offset="20">
+    <md-content class="entryContent">
+        <div layout-gt-xs="row" layout-align="center" layout-padding>
+            <md-input-container class="entryInput" flex="60">
+                <label>Project Name</label>
+                <input type="text" ng-model="vm.newProject.projectName" />
+            </md-input-container>
+            <div flex="20" flex-offset="20">
+                <md-button type="submit" class="md-raised md-warn">Submit</md-button>
             </div>
-        </md-content>
-    </form>
-    <md-table-container layout="column" flex="60" flex-offset="20">
-        <table md-table class="customTable">
-            <thead md-head>
-                <tr md-row>
-                    <th md-column>Project</th>
-                    <th md-column md-numeric>Total Hours</th>
-                    <th md-column>Actions</th>
-                </tr>
-            </thead>
-            <tbody md-body>
-                <tr md-row ng-repeat="project in vm.projects">
-                    <td md-cell width="50%">{{project.name}}</td>
-                    <td md-cell>{{project.total_hours}}</td>
-                    <td md-cell>
-                        <md-button class="md-warn" ng-click="vm.editProjectName(project.id, project.name)">Edit</md-button>
-                        <md-button class="md-warn" ng-click="vm.deleteProject(project.id)">Delete</md-button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </md-table-container>
-</div>
+        </div>
+    </md-content>
+</form>
+<md-table-container layout="column" flex="60" flex-offset="20">
+    <table md-table class="customTable">
+        <thead md-head>
+            <tr md-row>
+                <th md-column>Project</th>
+                <th md-column md-numeric>Total Hours</th>
+                <th md-column>Actions</th>
+            </tr>
+        </thead>
+        <tbody md-body>
+            <tr md-row ng-repeat="project in vm.projects">
+                <td md-cell width="50%">{{project.name}}</td>
+                <td md-cell>{{project.total_hours}}</td>
+                <td md-cell>
+                    <md-button class="md-warn" ng-click="vm.manageTeam(project.id)">Manage Project Team</md-button>
+                    <md-button class="md-warn" ng-click="vm.editProjectName(project.id, project.name)">Edit</md-button>
+                    <md-button class="md-warn" ng-click="vm.deleteProject(project.id)">Delete</md-button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</md-table-container>
