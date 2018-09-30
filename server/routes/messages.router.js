@@ -4,7 +4,8 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(req.body);
-    pool.query()
+    pool.query(`INSERT INTO "messages" ("message_body", "from_person_id", "to_person_id")
+    VALUES ($1, $2, $3);`, [req.body.message, req.user.id, req.body.id])
     .then((results) => {
         res.sendStatus(201);
     }).catch((error) => {

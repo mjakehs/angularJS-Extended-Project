@@ -54,7 +54,7 @@
         </ul>
         <p>Friends:</p>
         <ul>
-            <li ng-repeat="friend in vm.friends">{{friend.username}}</li>
+            <li ng-repeat="friend in vm.friends">{{friend.username}}<md-button ng-click="vm.sendMessage(friend.id)">Message</md-button></li>
         </ul>
         <p>Received Messages</p>
         <ul>
