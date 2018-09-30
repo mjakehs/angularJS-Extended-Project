@@ -67,42 +67,33 @@ app.controller('ProjectController', ['$http', '$mdDialog', function ($http, $mdD
             console.log('Add alert here?')
           });
     }
-    vm.manageTeam = function (entry) {
+    vm.manageTeam = function (project) {
         $mdDialog.show({
             parent: document.getElementById('popupContainer'),
             targetEvent: event.currentTarget,
             template:
                 `
-                <md-dialog ng-controller="EntryController as vm">
+                <md-dialog ng-controller="SocialController as vm">
                     <md-dialog-content>
-                    <h3>Edit Entry<h3>
-                    <div layout="row" layout-padding">
-                         <md-input-container class="entryInput">
-                            <label>Entry</label>
-                            <input type="text" ng-model="entryEdit.entry" placeholder="What did you do?" />
-                        </md-input-container>
-                         <md-input-container class="entryInput">
-                            <label>Project</label>
-                             <md-select ng-model="entryEdit.project_id">
-                                <md-option value="{{project.id}}" ng-repeat="project in vm.projectsList">{{project.name}}</option>
-                            </md-select>
-                        </md-input-container>
-                        <md-input-container class="entryInput">
-                            <label>Entry Date</label>
-                            <md-datepicker ng-model="entryEdit.date"></md-datepicker>
-                        </md-input-container>
-                        <md-input-container class="entryInput">
-                            <label>Hours</label>
-                            <input type="text" ng-model="entryEdit.hours">
-                        </md-input-container>
-                    </div>
+                        <div layout="row">
+                            <div flex="30">
+                                <p>Current Members</p>
+                                <ul>
+                                    <li ng-repeat="member in members">{{member.username}} Hours Worked: {{member.sum}}</li>
+                                </ul>
+                            </div>
+                            <md-input-container flex="30">
+                                <label>Comrades</label>
+                                <md-select ng-model="member.id">
+                                    <md-option value="{{friend.id}}" ng-repeat="friend in vm.friends">{{friend.username}}</option>
+                                </md-select>
+                            </md-input-container>
+                            <md-button ng-click="addMember(newMember)">Add Member</md-button>
+                         </div>
                     </md-dialog-content>
                     <md-dialog-actions>
                         <md-button ng-click="closeDialog()" class="md-warn md-raised">
-                            Cancel
-                        </md-button>
-                        <md-button ng-click="saveEdit(entryEdit.id)" class="md-primary md-raised">
-                            Save Edit
+                            Leave Project Manager
                         </md-button>
                     </md-dialog-actions>
                 </md-dialog>
@@ -110,6 +101,22 @@ app.controller('ProjectController', ['$http', '$mdDialog', function ($http, $mdD
             controller: DialogController
         });
         function DialogController($mdDialog, $scope, $http) {
+            $scope.newMember = {};
+            $scope.members = [];
+            $scope.getTeamMembers = function(project) {
+                $http({
+                    method: 'GET',
+                    url: 'projects/team',
+                    params: {project_id: project}
+                })
+                .then( function(response){
+                    $scope.members = response.data;
+                })
+                .catch(function(error) {
+                    alert('Error in projects/team GET');
+                })
+            }
+            $scope.getTeamMembers(project);
             $scope.closeDialog = function () {
                 $mdDialog.hide();
             }

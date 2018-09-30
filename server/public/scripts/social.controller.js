@@ -2,6 +2,7 @@ app.controller('SocialController', ['$http', '$mdDialog', function ($http, $mdDi
     let vm = this;
     vm.friends = [];
     vm.users = [];
+    vm.memners = [];
 
     vm.getUsers = function () {
         $http({
@@ -183,6 +184,19 @@ app.controller('SocialController', ['$http', '$mdDialog', function ($http, $mdDi
         })
         .catch(function (error) {
             alert('Error in connections DELETE.');
+        })
+    }
+    vm.getTeamMembers = function(project) {
+        $http({
+            method: 'GET',
+            url: 'projects/team',
+            params: {project_id: project}
+        })
+        .then( function(response){
+            vm.members = response.data;
+        })
+        .catch(function(error) {
+            alert('Error in projects/team GET');
         })
     }
 
