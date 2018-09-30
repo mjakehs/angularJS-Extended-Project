@@ -41,3 +41,9 @@
 md-dialog {
     width: 40%;
 }
+
+.makeScrollable {
+    height: 90vh;
+    overflow-y: scroll;
+    background-color: lightgreen;
+}
