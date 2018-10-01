@@ -30,4 +30,5 @@ Remainder of the to-do list for this branch:
 
 *  node.js -- run npm install to install all server dependencies
 *  postgresQL -- create database "time_tracker" and run queries in database.sql file
+*  dotenv -- create a .env file that includes SERVER_SESSION_SECRET=(a secret of your choosing)
 
