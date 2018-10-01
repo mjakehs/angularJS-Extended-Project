@@ -68,11 +68,10 @@ router.get('/filter', rejectUnauthenticated, (req, res) => {
 })
 
 router.get('/team', rejectUnauthenticated, (req, res) => {
-    pool.query(`SELECT "person".username, sum("entry".hours) FROM "person_project"
+    pool.query(`SELECT "person".username FROM "person_project"
     FULL JOIN "person" ON "person_project".member_id="person".id
-    LEFT JOIN "entry" ON "person".id="entry".person_id
     WHERE "person_project".project_id=$1 AND "person_project".owner_id=$2
-    GROUP BY "person".username;`, [req.query.project_id, req.user.id])
+    `, [req.query.project_id, req.user.id])
     .then( (results) => {
         console.log(results.rows);
         res.send(results.rows);

@@ -79,7 +79,7 @@ app.controller('ProjectController', ['$http', '$mdDialog', function ($http, $mdD
                             <div flex="30">
                                 <p>Current Members</p>
                                 <ul>
-                                    <li ng-repeat="member in members">{{member.username}} Hours Worked: {{member.sum}}</li>
+                                    <li ng-repeat="member in members">{{member.username}}</li>
                                 </ul>
                             </div>
                             <md-input-container flex="30">
