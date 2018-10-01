@@ -12,3 +12,9 @@ CREATE TABLE "project" (
     "id" SERIAL PRIMARY KEY,
     "name" VARCHAR(120) NOT NULL
 );
+
+CREATE TABLE "person" (
+    "id" SERIAL PRIMARY KEY,
+    "username" VARCHAR (80) UNIQUE NOT NULL,
+    "password" VARCHAR (1000) NOT NULL
+);
