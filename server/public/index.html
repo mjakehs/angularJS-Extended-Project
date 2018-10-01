@@ -31,50 +31,26 @@
 
 <body ng-app="TrackerApp">
     <div id="popupContainer" ng-cloak>
-        <div layout="column" id="pageHeader">
-            <header>
+        <div layout="row" id="pageHeader">
+            <header flex="20">
                 <h1>Time Tracker</h1>
             </header>
+            <div class="navContainer" flex="80" layout="row">
+                <a class="navLink md-button md-raised md-primary" flex="20" href="#!/entry">Entries</a>
+                <a class="navLink md-button md-raised md-primary" flex="20" href="#!/project">Projects</a>
+                <a class="navLink md-button md-raised md-primary" flex="20" href="#!/report">Report</a>
+                <div ng-controller="AuthController as vm" flex-offset="20" flex="20">
+                        <div ng-controller="SocialController as vm">
+                                <span>Current User:</span>
+                                <span>{{vm.currentUser}}</span>
+                            </div>
+                    <md-button class="md-warn md-raised" ng-click="vm.logOut()">Log Out</md-button>
+                </div>
+            </div>
         </div>
         <div layout="row">
-            <ng-view flex="70"></ng-view>
-            <div flex=30 ng-controller="SocialController as vm">
-                <md-content class="makeScrollable">
-                    <p>Current User: {{vm.currentUser}}</p>
-                    <p>Connections:</p>
-                    <p>Add new connection</p>
-                    <input type="text" placeholder="search" ng-model="vm.searchText">
-                    <md-button ng-click="vm.addConnectionRequest(vm.newConnection)">Add Comrade</md-button>
-                    <md-select flex="20" ng-model="vm.newConnection.user">
-                        <md-option value="{{user.id}}" ng-repeat="user in vm.users | filter : vm.searchText">{{user.username}}</md-option>
-                    </md-select>
-                    <p>Requests:</p>
-                    <p>Received:</p>
-                    <ul>
-                        <li ng-repeat="request in vm.receivedRequests">{{request.username}} <md-button ng-click="vm.acceptRequest(request.from_person_id)">Accept</md-button>
-                        </li>
-                    </ul>
-                    <p>Sent:</p>
-                    <ul>
-                        <li ng-repeat="request in vm.sentRequests">{{request.username}}<md-button ng-click="vm.cancelRequest(request.to_person_id)">Cancel</md-button>
-                        </li>
-                    </ul>
-                    <p>Friends:</p>
-                    <ul>
-                        <li ng-repeat="friend in vm.friends">{{friend.username}}<md-button ng-click="vm.sendMessage(friend.id)">Message</md-button>
-                            <md-button ng-click="vm.deleteConnection(friend.id)">Disconnect</md-button>
-                        </li>
-                    </ul>
-                    <p>Received Messages</p>
-                    <ul>
-                        <li ng-repeat="message in vm.receivedMessages">{{message.from}} : {{message.message}}</li>
-                    </ul>
-                    <p>Sent Messages</p>
-                    <ul>
-                        <li ng-repeat="message in vm.sentMessages">{{message.to}} : {{message.message}}</li>
-                    </ul>
-                </md-content>
-            </div>
+            <ng-view flex="75"></ng-view>
+            <ng-include flex="25" ng-controller="SocialController as vm" src="'./views/social.html'"></ng-include>
         </div>
     </div>
 

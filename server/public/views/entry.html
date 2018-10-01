@@ -1,64 +1,63 @@
-<ng-include src="'./views/navigation.html'"></ng-include>
-    <form layout="column" ng-cloak class="md-inline-form entryForm" ng-submit="vm.submitEntry(vm.newEntry)" flex="60"
-        flex-offset="20">
-        <md-content class="entryContent">
-            <div layout-gt-xs="row" layout-align="center" layout-padding>
-                <md-input-container class="entryInput" flex="100">
-                    <label>Entry</label>
-                    <input type="text" ng-model="vm.newEntry.entry" placeholder="What did you do?" />
-                </md-input-container>
+<form layout="column" ng-cloak class="md-inline-form entryForm" ng-submit="vm.submitEntry(vm.newEntry)" flex="60"
+    flex-offset="20">
+    <md-content class="entryContent">
+        <div layout-gt-xs="row" layout-align="center" layout-padding>
+            <md-input-container class="entryInput" flex="100">
+                <label>Entry</label>
+                <input type="text" ng-model="vm.newEntry.entry" placeholder="What did you do?" />
+            </md-input-container>
+        </div>
+    </md-content>
+    <md-content class="entryContent">
+        <div layout-gt-xs="row" layout-align="center" layout-padding>
+            <md-input-container class="entryInput" flex="20">
+                <label>Project</label>
+                <md-select ng-model="vm.newEntry.project_id">
+                    <md-option value="{{project.id}}" ng-repeat="project in vm.projectsList">{{project.name}}</option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="entryInput" flex="30">
+                <label>Entry Date</label>
+                <md-datepicker ng-model="vm.newEntry.date"></md-datepicker>
+            </md-input-container>
+            <md-input-container class="entryInput" flex="15">
+                <label>Start Time</label>
+                <input type="time" ng-model="vm.newEntry.startTime">
+            </md-input-container>
+            <md-input-container class="entryInput" flex="15">
+                <label>End Time</label>
+                <input type="time" ng-model="vm.newEntry.endTime">
+            </md-input-container>
+            <div>
+                <md-button type="submit" class="md-raised md-warn">Submit</md-button>
             </div>
-        </md-content>
-        <md-content class="entryContent">
-            <div layout-gt-xs="row" layout-align="center" layout-padding>
-                <md-input-container class="entryInput" flex="20">
-                    <label>Project</label>
-                    <md-select ng-model="vm.newEntry.project_id">
-                        <md-option value="{{project.id}}" ng-repeat="project in vm.projectsList">{{project.name}}</option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container class="entryInput" flex="30">
-                    <label>Entry Date</label>
-                    <md-datepicker ng-model="vm.newEntry.date"></md-datepicker>
-                </md-input-container>
-                <md-input-container class="entryInput" flex="15">
-                    <label>Start Time</label>
-                    <input type="time" ng-model="vm.newEntry.startTime">
-                </md-input-container>
-                <md-input-container class="entryInput" flex="15">
-                    <label>End Time</label>
-                    <input type="time" ng-model="vm.newEntry.endTime">
-                </md-input-container>
-                <div>
-                    <md-button type="submit" class="md-raised md-warn">Submit</md-button>
-                </div>
 
-            </div>
-        </md-content>
-    </form>
+        </div>
+    </md-content>
+</form>
 
-    <md-table-container layout="column" flex="80" flex-offset="10">
-        <table md-table class="customTable">
-            <thead md-head md-order="myOrder">
-                <tr md-row>
-                    <th md-column md-order-by="entry">Entry</th>
-                    <th md-column md-order-by="name">Project</th>
-                    <th md-column md-order-by="entry_date" md-date>Date</th>
-                    <th md-column>Hours</th>
-                    <th md-column colspan="2">Actions</th>
-                </tr>
-            </thead>
-            <tbody md-body>
-                <tr md-row ng-repeat="entry in vm.entries | orderBy: myOrder">
-                    <td md-cell>{{entry.entry}}</td>
-                    <td md-cell>{{entry.name}}</td>
-                    <td md-cell>{{entry.entry_date | date}}</td>
-                    <td md-cell>{{entry.hours}}</td>
-                    <td md-cell>
-                        <md-button class="md-warn" ng-click="vm.editEntry(entry)">Edit</md-button>
-                        <md-button class="md-warn" ng-click="vm.deleteEntry(entry.id)">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </md-table-container>
+<md-table-container layout="column" flex="80" flex-offset="10">
+    <table md-table class="customTable">
+        <thead md-head md-order="myOrder">
+            <tr md-row>
+                <th md-column md-order-by="entry">Entry</th>
+                <th md-column md-order-by="name">Project</th>
+                <th md-column md-order-by="entry_date" md-date>Date</th>
+                <th md-column>Hours</th>
+                <th md-column colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody md-body>
+            <tr md-row ng-repeat="entry in vm.entries | orderBy: myOrder">
+                <td md-cell>{{entry.entry}}</td>
+                <td md-cell>{{entry.name}}</td>
+                <td md-cell>{{entry.entry_date | date}}</td>
+                <td md-cell>{{entry.hours}}</td>
+                <td md-cell>
+                    <md-button class="md-warn" ng-click="vm.editEntry(entry)">Edit</md-button>
+                    <md-button class="md-warn" ng-click="vm.deleteEntry(entry.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</md-table-container>

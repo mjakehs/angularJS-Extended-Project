@@ -48,3 +48,20 @@ md-dialog {
     overflow-y: scroll;
     background-color: lightgreen;
 }
+
+#socialPanel {
+    background-color: lightseagreen;
+    border-left: solid 1px black;
+}
+
+#comradeTab {
+    background-color: darkorchid;
+}
+
+#messageTab {
+    background-color: darkmagenta;
+}
+
+#manageComradeTab {
+    background-color: darkturquoise;
+}
